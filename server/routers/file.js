@@ -1,19 +1,17 @@
 const express = require('express');
 const multer = require('multer');
+const auth = require('../middlewares/auth');
 const File = require('../models/file');
 
 const router = express.Router();
 
-
-
 const upload = multer({
-    dest: 'files',
+    // dest: 'files',
     limits : {
         fileSize : 8000000
     },
     fileFilter : function(req, file, cb){
-        //if(!file.originalname.match(/\.(png|jpg|jpeg|pdf|docx|doc)$/)){
-        if(!file.originalname.match(/\.(doc)$/)){
+        if(!file.originalname.match(/\.(png|jpg|jpeg|pdf|docx|doc)$/)){
             cb(new Error('Please upload the correct file type'));
         }
 
@@ -22,16 +20,63 @@ const upload = multer({
 }) 
 
 /* 
-@Upload File
-@POST
+End point to create a file
 */
+router.post('/upload', auth, upload.array('files'), async (req, res)=> {
+    try{
+        const files = req.files;
+        
+        files.forEach(async (file)=>{
+            const fileName = Date.now() + '-' + file.originalname;
+            const newFile = new File({
+                name: fileName,
+                file: file.buffer,
+                owner: req.user._id
+            })
 
-router.post('/upload', upload.single('file'), (req, res)=> {
-    res.send();
+            await newFile.save();
+        })
+        res.send(req.files);
+    }
+    catch(e){
+        res.status(400).send(e);
+    }
 }, (error, req, res, next) => {
     res.status(400).send({error: error.message});
 })
 
+
+// End point to delete a file
+router.delete('/deletefile', auth, async(req, res) => {  
+    try{
+        console.log(req.body.id);
+        const file = await File.findOneAndDelete({_id: req.body.id, owner: req.user._id});
+        if(!file){
+            res.status(400).send();
+        }
+        res.send(file.id);
+    }
+
+    catch(e){
+        res.send(e)
+    }
+})
+
+//Fetch all files for a user
+router.get('/files', auth, async(req, res)=>{
+    try{
+        const files = await File.find({owner: req.user._id})
+        if(!files){
+            res.status(404).send();
+        }
+        res.status(200).send(files);
+    }
+    catch(e){
+        res.status(400).send();
+    }
+})
+
+//Fetch single file for a user
 
 module.exports = router;
 

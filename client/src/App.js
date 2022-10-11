@@ -9,6 +9,7 @@ import FooterComponent from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Dashboard from './components/files/Dashboard';
 
 import './App.css';
 import setAuthToken from './utils/setAuthToken';
@@ -34,6 +35,7 @@ function App() {
                   <Route exact path ="/" element={<Landing />} />
                   <Route exact path="/register" element={<Register/>}/>
                   <Route exact path="/login" element={<Login/>}/>
+                  <Route exact path="/dashboard" element={<Dashboard/>}/>
               </Routes>
               <FooterComponent />
           </div>

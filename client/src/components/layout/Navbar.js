@@ -32,11 +32,12 @@ const NavbarComponent = (props) => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                <Navbar.Brand href="/">FilePro</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="#about">About</Nav.Link>
-                    <Nav.Link href="#dashboard">Dashboard</Nav.Link>
+                    {
+                        isAuthenticated ? <Nav.Link href="/dashboard">Dashboard</Nav.Link> : <></>
+                    }
                 </Nav>
                 {isAuthenticated ? authLink : guestLink}
             </Container>

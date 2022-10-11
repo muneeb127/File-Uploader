@@ -40,7 +40,7 @@ const Register = (props) => {
     }
 
     return (
-        <Container style={{width: "50%"}}>
+        <Container className = 'register' style={{width: "50%"}}>
         <h1 className='display-4 text-center'>Sign Up</h1>
         <p className = 'lead text-center'>Create your Video Pro account</p>
         <Form onSubmit={onFormSubmit}>

@@ -9,8 +9,8 @@ const Landing = () => {
             <Container>
                 <div className ="row">
                     <div className ="col-md-12 text-center">
-                        <h1 className ="display-3 mb-4">Video Pro</h1>
-                        <p className ="lead"> Create your own video profile, share video and stream other people's content</p>
+                        <h1 className ="display-3 mb-4">FilePro</h1>
+                        <p className ="lead">Store &amp; manage files according to your convenience</p>
                         <hr />
                         <Link to="/register">
                             <Button variant="primary" style = {{"marginRight": "10px"}}>Sign Up</Button>

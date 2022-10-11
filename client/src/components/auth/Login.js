@@ -55,7 +55,7 @@ const Login = (props) => {
 
 
     return (
-        <Container style={{width: "50%"}}>
+        <Container className = 'login' style={{width: "50%"}}>
             <h1 className='display-4 text-center'>Login</h1>
             <Form onSubmit={onFormSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

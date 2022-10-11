@@ -27,6 +27,15 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
+//Relation bw user and files
+//We can fetch all files for a user using this relation and vice versa
+userSchema.virtual('files',{
+    ref: 'File',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
+
 // Generating Auth token
 userSchema.methods.generateAuthToken = async function (){
     const user = this;

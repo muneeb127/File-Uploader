@@ -1,40 +1,64 @@
+
+
 img {
-    width: 100%;
-  }
-  
-  .landing {
-    position: relative;
-    background: url('./img/showcase-2.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    /* margin-top: -24px; */
-    margin-bottom: -50px;
-  }
-  
-  .landing-inner {
-    padding-top: 80px;
-  }
-  
-  .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .card-form {
-    opacity: 0.9;
-  }
-  
-  .latest-profiles-img {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .form-control::placeholder {
-    color: #bbb !important;
-  }
-  
+  width: 100%;
+}
+
+.landing {
+  min-height: 100vh;
+  position: relative;
+  background: url('./img/showcase-3.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* margin-top: -24px; */
+  /* margin-bottom: -50px; */
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
+
+
+
+/* Login Page */
+
+.heading{
+  margin: 20px;
+}
+
+.login{
+  margin-bottom: 50px;
+}
+
+/* Register Page */
+
+.register{
+  margin-bottom: 50px;
+}
+
+/* Dashboard */
+
+.dashboard{
+  margin-bottom:50px;
+}
+
+.upload-button{
+  margin: 0 auto;
+  /* position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
