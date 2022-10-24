@@ -4,7 +4,6 @@ import setAuthToken from '../../utils/setAuthToken';
 
 import {GET_ERRORS, SET_CURRENT_USER} from './types';
 
-
 //Register
 export const registerUser = (userData, navigate) => async dispatch => {
     try{
@@ -18,7 +17,6 @@ export const registerUser = (userData, navigate) => async dispatch => {
         });
     }  
 }
-
 
 //Login
 export const loginUser = (userData) => async dispatch => {
@@ -41,16 +39,13 @@ export const loginUser = (userData) => async dispatch => {
     }
 }
 
-
 // To set current user 
-
 export const setCurrentUser = user => {
     return {
         type: SET_CURRENT_USER,
         payload: user
     }
 }
-
 
 export const logoutUser = () => dispatch => {
     localStorage.removeItem('jwtToken');

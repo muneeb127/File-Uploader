@@ -1,0 +1,146 @@
+/* 
+ @Color Palette
+    Dark-purple: #0d0d21
+    Light-purple: #2E2F43
+    Inner-box: #23243d
+    Grey: #5A5B69
+    Light-grey: #B8BCC5
+*/
+
+.login-page{
+    height: 100vh;
+    background-color: #2E2F43;
+    /* background-color: #21213e; */
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box{
+    height: 80vh;
+    width: 80%;
+    background-color:#0d0d21; 
+    /* background-color: #0f102b; */
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-heading{
+    font-size: 3rem;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* Form section styling */
+.form-section{
+    width: 30%;
+    background-color: #2E2F43;
+    /* background-color: #21213e; */
+    margin-top: 20px;
+    padding: 30px 30px;
+    border-radius: 10px;
+    color: white;
+}
+
+.form-section>div{
+    display: flex;
+    flex-direction: column;
+}
+
+p#filled-required-helper-text {
+    padding-top: 5px;
+    background-color: #2E2F43;
+    font-size: 0.9rem;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+p#filled-password-input-helper-text {
+    padding-top: 5px;
+    background-color: #2E2F43;
+    font-size: 0.9rem;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+/* Material UI */
+.css-wb57ya-MuiFormControl-root-MuiTextField-root{
+    margin-bottom: 10px!important;
+    border-radius: 10px;
+    background-color: #5A5B69;
+    
+}
+
+.css-e4w4as-MuiFormLabel-root-MuiInputLabel-root{
+    color: #B8BCC5!important;
+}
+
+.css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+    color: #B8BCC5!important;
+}
+
+.css-o943dk-MuiFormLabel-root-MuiInputLabel-root{
+    color: #B8BCC5!important;
+}
+
+.css-gjbq6i-MuiInputBase-root-MuiFilledInput-root:before {
+    border-bottom: none!important;
+}
+
+.css-gjbq6i-MuiInputBase-root-MuiFilledInput-root:after {
+    border-bottom: none!important;
+}
+
+.css-10botns-MuiInputBase-input-MuiFilledInput-input {
+    color: white!important;
+}
+
+
+div.btn-classic{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.btn-classic>button.btn-normal {
+    width: 30%;
+    background-color:white;
+    border-color:white;
+    color: black;
+    border-radius: 50px;
+    box-shadow: 1px 1px 2px #B8BCC5;
+}
+
+div.btn-classic>button.btn-normal:hover{
+    color: white;
+    background-color: #0d0d21;
+    border-color: #0d0d21;
+    box-shadow: 1px 1px 2px 2px #2E2F43;
+}
+
+div.sign-up{
+    margin-top: 5px;
+}
+
+div.sign-up>span{
+    font-size: 1.2rem;
+    color: #B8BCC5;
+}
+
+div.sign-up>:nth-child(2){
+    color: #5681A0;
+}
+
+div.sign-up>:nth-child(2):hover{
+    color: #5681A0;
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -1,10 +1,10 @@
 import React, {useState, useEffect}  from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
+import fileDownload from 'js-file-download';
 //Actions
-import {getAllFiles} from '../../redux/actions/fileAction';
+import {getAllFiles, deleteFile} from '../../redux/actions/fileAction';
 
 const FileList = (props) => {
 
@@ -12,86 +12,84 @@ const FileList = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [errors, setErrors] = useState({});
 
-
-    // const getAllFiles = () => {
-    //     axios.get(`${process.env.REACT_APP_BASEURL}/files`)
-    //         .then((response)=>{
-    //             // console.log(response.data);
-    //             setFiles(response.data);
-    //             setTimeout(()=>{
-    //                 setIsLoading(false);
-    //             }, 2000)
-    //         })
-    //         .catch((error)=>{
-    //             console.log(error);
-    //         })
-    // }
-
     useEffect(() => {
         props.getAllFiles();
+        setFiles(props.files);
+        // console.log("Files: ", files);
     }, []);
 
-    // useEffect(()=>{
-    //     setFiles(props.files);
-    //     setErrors(props.errors);
-    //     props.getAllFiles();
-    // }, [props.files, props.errors])
+    useEffect(()=>{
+        // console.log("Files: ", files);
+        setFiles(props.files);
+        setIsLoading(false);
+    }, [props.files]);
 
-    console.log("Files: ", files);
+    // Parsing file Data into the required format
+    const fileData = files.map((file)=>{
+        let fileInfo = {};
 
+        //Processing the date 
+        let uploadDate = file.name.substring(0, file.name.indexOf("-"));
+        uploadDate = Number(uploadDate);
+        const date = new Date(uploadDate);
+        uploadDate = date.toLocaleDateString();
+        let uploadTime = date.toLocaleTimeString();
 
-    //Parsing file Data into the required format
-    // const fileData = files.map((file)=>{
-    //     let fileInfo = {};
+        //File name
+        const name = file.name.substring(file.name.indexOf('-') + 1);
 
-    //     //Processing the date 
-    //     let uploadDate = file.name.substring(0, file.name.indexOf("-"));
-    //     uploadDate = Number(uploadDate);
-    //     const date = new Date(uploadDate);
-    //     uploadDate = date.toLocaleDateString();
-    //     let uploadTime = date.toLocaleTimeString();
+        //Getting file extension
+        let fileExtension = file.name.substring(file.name.indexOf('.') + 1);
+        fileInfo = {
+            id: file._id,
+            owner: file.owner,
+            file: file.file,
+            name,
+            uploadDate,
+            uploadTime,
+            fileExtension
+        };
 
-    //     //File name
-    //     const name = file.name.substring(file.name.indexOf('-') + 1);
+        return fileInfo;
+    });
 
-    //     //Getting file extension
-    //     let fileExtension = file.name.substring(file.name.indexOf('.') + 1);
-    //     fileInfo = {
-    //         id: file._id,
-    //         owner: file.owner,
-    //         file: file.file,
-    //         name,
-    //         uploadDate,
-    //         uploadTime,
-    //         fileExtension
-    //     };
+    //Function to download the file
+    const onDownloadClick = (file) => {
 
-    //     return fileInfo;
-    // });
+        console.log("On Download: ", file);
+        var blob = new Blob([new Uint8Array(file.file.data)], {type: file.fileExtension});
+        fileDownload(blob, `${file.name}`);
+    
+    }
+
+    const onDeleteClick = (file) =>{
+        console.log(file.id);
+        props.deleteFile(file.id);
+    }
 
     //Mapping through files to render list items
-    // let renderFiles = fileData.map((file)=>{
-    //     return(
-    //         <div className="item" key = {file.id}>
-    //             <div className="right floated content">
-    //                 <div className="ui small basic icon buttons">
-    //                     <button className="ui button"><i className="large cloud download icon"></i></button>
-    //                     <button className="ui button"><i className="large archive icon"></i></button>
-    //                 </div>
-    //             </div>
-    //             <i className="big file alternate middle aligned icon"></i>
-    //             <div className="content">
-    //                 <a className="header">{file.name}</a>
-    //                 <div className="description">{file.uploadDate} | {file.uploadTime}</div>
-    //             </div>
-    //         </div>
-    //     )
-    // })
+    let renderFiles = fileData.map((file)=>{
+        return(
+            <div className="item" key = {file.id}>
+                <div className="right floated content">
+                    <div className="ui small basic icon buttons">
+                        <button className="ui button" onClick={() => onDownloadClick(file)}><i className="large cloud download icon"></i></button>
+                        <button className="ui button" onClick={() => onDeleteClick(file)}><i className="large archive icon"></i></button>
+                    </div>
+                </div>
+                <i className="big file alternate middle aligned icon"></i>
+                <div className="content">
+                    <a className="header">{file.name}</a>
+                    <div className="description">{file.uploadDate} | {file.uploadTime}</div>
+                </div>
+            </div>
+        )
+    })
 
 
     return (
         <div>
-            {/* {
+            {
                 isLoading ? 
                 <>
                     <div className="ui massive active centered inline loader"></div>
@@ -103,22 +101,21 @@ const FileList = (props) => {
                         {renderFiles}
                     </div>   
                 </div>
-            } */}
-            <p>Muneeb</p>
+            }
         </div>
     )
 }
 
 FileList.propTypes = {
-    files : PropTypes.object.isRequired,
+    files : PropTypes.array.isRequired,
     errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    files: state.files,
+    files: state.files.files,
     errors: state.errors
 })
 
 export default connect(mapStateToProps, {
-    getAllFiles
+    getAllFiles, deleteFile
 })(FileList);

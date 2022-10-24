@@ -23,6 +23,7 @@ function SearchModal(props) {
     const onClickUpload = (e) => {
         e.preventDefault();
         uploadFile(files);
+        props.onHide();
     }
 
 

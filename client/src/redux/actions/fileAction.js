@@ -53,11 +53,11 @@ export const uploadFile = (files) => async dispatch => {
 export const getAllFiles = () => async dispatch => {
     try {
         const response = await axios.get(`${process.env.REACT_APP_BASEURL}/files`);
-        console.log(response.data);
-        // dispatch({
-        //     type: GET_ALL_FILES,
-        //     payload: response.data
-        // })
+        // console.log(response.data);
+        dispatch({
+            type: GET_ALL_FILES,
+            payload: response.data
+        })
     }
     catch(error){
         dispatch({
@@ -67,3 +67,22 @@ export const getAllFiles = () => async dispatch => {
     }
 }
 
+//Delete a file
+export const deleteFile = (fileID) => async dispatch => {
+    try{
+        await axios.delete(`${process.env.REACT_APP_BASEURL}/deletefile`, {params: {id: fileID}});
+        console.log("File deleted....")
+        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/files`);
+        
+        dispatch({
+            type: GET_ALL_FILES,
+            payload: response.data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        })
+    }
+}

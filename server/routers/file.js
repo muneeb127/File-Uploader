@@ -11,7 +11,7 @@ const upload = multer({
         fileSize : 8000000
     },
     fileFilter : function(req, file, cb){
-        if(!file.originalname.match(/\.(png|jpg|jpeg|pdf|docx|doc)$/)){
+        if(!file.originalname.match(/\.(png|jpg|jpeg|pdf|docx|doc|txt|JPG)$/)){
             cb(new Error('Please upload the correct file type'));
         }
 
@@ -19,9 +19,8 @@ const upload = multer({
     }
 }) 
 
-/* 
-End point to create a file
-*/
+ 
+//End point to upload a file
 router.post('/upload', auth, upload.array('files'), async (req, res)=> {
     try{
         const files = req.files;
@@ -34,12 +33,14 @@ router.post('/upload', auth, upload.array('files'), async (req, res)=> {
                 owner: req.user._id
             })
 
+            // console.log(newFile);
+
             await newFile.save();
         })
         res.send(req.files);
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error: "File can not be uploaded"});
     }
 }, (error, req, res, next) => {
     res.status(400).send({error: error.message});
@@ -49,8 +50,10 @@ router.post('/upload', auth, upload.array('files'), async (req, res)=> {
 // End point to delete a file
 router.delete('/deletefile', auth, async(req, res) => {  
     try{
-        console.log(req.body.id);
-        const file = await File.findOneAndDelete({_id: req.body.id, owner: req.user._id});
+        // console.log(req.query.id);
+        const file = await File.findOneAndDelete({_id: req.query.id});
+        // const file = await File.findOneAndDelete({_id: req.query.id, owner: req.user._id});
+        console.log("File: ", file);
         if(!file){
             res.status(400).send();
         }
@@ -75,8 +78,6 @@ router.get('/files', auth, async(req, res)=>{
         res.status(400).send();
     }
 })
-
-//Fetch single file for a user
 
 module.exports = router;
 

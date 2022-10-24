@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {useNavigate, Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {loginUser} from '../../redux/actions/authAction';
-import {setErrorsEmpty} from '../../redux/actions/errorAction';
 
 import classnames from 'classnames';
 
+// import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import './login.css';
+import './loginPage.css';
 
-const Login = (props) => {
+const LoginPage2 = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,27 +34,16 @@ const Login = (props) => {
         if(props.auth.isAuthenticated){
             navigate('/dashboard');
         }
-        props.setErrorsEmpty();
     }, []);
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
-
         const userData = {
             email,
             password
         }
-
-        props.loginUser(userData);
-
-        // try{
-        //     const response = await axios.post('/users/login', newUser);
-        //     console.log(response);
-        // }
-        // catch(error){
-        //     console.log(error.response.data);
-        //     setErrors(error.response.data);
-        // }
+        // props.loginUser(userData);
+        console.log(userData);
     }
 
     return (
@@ -74,16 +64,15 @@ const Login = (props) => {
                                 className = {classnames({
                                     'is-invalid': errors.email
                                 })}
-                                id="email-field"
                             />
-                            {errors.email && (
+                            {/* {errors.email && (
                                 <Form.Control.Feedback type = "invalid">
                                     {errors.email}
                                 </Form.Control.Feedback>
-                            )}
+                            )} */}
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
                                 type="password" 
@@ -93,7 +82,6 @@ const Login = (props) => {
                                 className = {classnames({
                                     'is-invalid': errors.password
                                 })}
-                                id="password-field"
                             />
                             {errors.password && (
                                 <Form.Control.Feedback type = "invalid">
@@ -106,77 +94,58 @@ const Login = (props) => {
                             <p style={{color: 'red'}}>
                                 {errors.value}
                             </p>
-                        )}
+                        )} */}
                         <div className="btn-classic">
-                            <Button variant="primary" type="submit" size='md' className='btn-normal'>
+                            <Button variant="primary" size='md' className='btn-normal'>
                                 Log In
                             </Button>
                         </div>
                     </Form>
+                    {/* <Box
+                        component="form"
+                        lg={{
+                            width: '100%',
+                        }} 
+                        noValidate
+                        autoComplete="off"
+                        
+                    >
+                        <div id='text-fields'>
+                            <TextField fullWidth
+                                name="email"
+                                id="filled-required"
+                                label="EMAIL"
+                                variant="filled"
+                                error
+                                helperText="Your email is incorrect"
+                            />
+                            <TextField fullWidth
+                                id="filled-password-input"
+                                name="password"
+                                label="PASSWORD"
+                                type="password"
+                                variant="filled"
+                                error
+                                helperText="Your password is incorrect"
+                            />
+                        </div>
+                    </Box> */}
+                    {/* <div className='btn-classic'>
+                        <Button variant="primary" size='md' className='btn-normal'>
+                            Log In
+                        </Button>
+                    </div> */}
                 </div>
                 <div className='sign-up'>
                     <span>Don't have an account? </span>
-                    <Link to='/register'>
-                        <span> Sign Up</span>
-                    </Link>
+                    <span> Sign Up</span>
                 </div>
             </div>
         </div>
-        // <Container className = 'login' style={{width: "50%"}}>
-        //     <h1 className='display-4 text-center'>Login</h1>
-        //     <Form onSubmit={onFormSubmit}>
-        //         <Form.Group className="mb-3" controlId="formBasicEmail">
-        //             <Form.Label>Email address</Form.Label>
-        //             <Form.Control 
-        //                 type="email" 
-        //                 placeholder="Enter email" 
-        //                 onChange = {e => setEmail(e.target.value)} 
-        //                 value = {email}
-        //                 className = {classnames({
-        //                     'is-invalid': errors.email
-        //                 })}
-        //             />
-        //             {errors.email && (
-        //                 <Form.Control.Feedback type = "invalid">
-        //                     {errors.email}
-        //                 </Form.Control.Feedback>
-        //             )}
-        //         </Form.Group>
-
-        //         <Form.Group className="mb-3" controlId="formBasicPassword">
-        //             <Form.Label>Password</Form.Label>
-        //             <Form.Control 
-        //                 type="password" 
-        //                 placeholder="Password" 
-        //                 onChange = {e => setPassword(e.target.value)} 
-        //                 value = {password}
-        //                 className = {classnames({
-        //                     'is-invalid': errors.password
-        //                 })}
-        //             />
-        //             {errors.password && (
-        //                 <Form.Control.Feedback type = "invalid">
-        //                     {errors.password}
-        //                 </Form.Control.Feedback>
-        //             )}
-                    
-        //         </Form.Group>
-        //         {errors.value && (
-        //             <p style={{color: 'red'}}>
-        //                 {errors.value}
-        //             </p>
-        //         )}
-        //         <div className="d-grid gap-2">
-        //             <Button variant="primary" type="submit" size="lg">
-        //             Submit
-        //             </Button>
-        //         </div>
-        //     </Form>
-        // </Container>
-    )
+    );
 }
 
-Login.propTypes = {
+LoginPage2.propTypes = {
     loginUser : PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -188,5 +157,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {
-    loginUser, setErrorsEmpty
-})(Login);
+    loginUser
+})(LoginPage2);

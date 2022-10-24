@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import {logoutUser} from '../../redux/actions/authAction';
 
 import Nav from 'react-bootstrap/Nav'
@@ -13,7 +13,13 @@ const NavbarComponent = (props) => {
     const onLogoutClick = (e) => {
         e.preventDefault();
         props.logoutUser();
-        navigate('/login');
+        navigate('/');
+    }
+
+    const location = useLocation()
+
+    if(location.pathname === "/loginpage" || location.pathname === "/" || location.pathname === "/register") {
+        return null
     }
     
     const authLink = (
