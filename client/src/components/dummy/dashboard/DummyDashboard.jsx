@@ -10,12 +10,17 @@ import Alert from 'react-bootstrap/Alert';
 const DummyDashboard = () => {
 
     const [modalShow, setModalShow] = useState(false);
-    const [uploadStatus, setUploadStatus] = useState('');   
+    const [uploadStatus, setUploadStatus] = useState(0);
+    const [files, setFiles] = useState(0);   
 
     const fileUploadStatus = (status) =>{
         console.log("Status: ", status);
         setUploadStatus(status);
     }
+
+    setTimeout(()=>{
+        setUploadStatus(0);
+    }, 3000);
 
     return (
         <div className='dashboard-page'>
@@ -32,11 +37,15 @@ const DummyDashboard = () => {
             <div className = "dashboard">
                 <div className='dashboard-content'>
                     <h1 className='display-4 heading'>Dashboard</h1>
-                    {uploadStatus===200?
-                    <Alert key='success' variant='success'>
-                        Your files have been uploaded successfully!
-                    </Alert>:
-                    <></>
+                    {
+                        uploadStatus===200?
+                        <Alert key='success' variant='success'>
+                            Your files have been uploaded successfully!
+                        </Alert>:
+                        (uploadStatus!==0?
+                        <Alert key='danger' variant='danger'>
+                            File uploading failed. Please try again!
+                        </Alert>:<></>)
                     }
                     
                     {/* <h1 className='display-4 text-center heading'>Dashboard</h1> */}

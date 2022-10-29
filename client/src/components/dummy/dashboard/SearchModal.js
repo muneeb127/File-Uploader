@@ -23,8 +23,13 @@ function SearchModal(props) {
     const onClickUpload = async (e) => {
         e.preventDefault();
         const fileUploadResponse = await uploadFile(files);
-        console.log(fileUploadResponse.status);
-        props.fileUploadStatus(fileUploadResponse.status);
+        if(fileUploadResponse.status){
+            console.log(fileUploadResponse.status);
+            props.fileUploadStatus(fileUploadResponse.status);
+        }
+        else{
+            props.fileUploadStatus(401);
+        }
         props.onHide();
     }
 
