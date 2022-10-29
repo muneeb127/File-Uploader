@@ -1,0 +1,149 @@
+/* 
+@ Navbar color: #212529
+*/
+
+
+div.dashboard-page{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#upload-button{
+    background-color: #2E2F43;
+    display: block;
+    width: 20%;
+    margin-bottom: 20px;
+    color: white;
+}
+
+div.sidebar{
+    /* height: 100vh; */
+    height: calc(100vh - 49px);
+    flex-direction: column;
+    overflow: auto;
+    width: 20%;
+    /* background-color: #212529; */
+    background-color: #2E2F43;
+    border-right: 1px solid black;
+    /* box-shadow: 5px 5px 5px #212529; */
+    border-left: none;
+}
+
+div.sidebar>span{
+    font-size: 2rem;
+    color: white;
+    margin: 20px;
+    padding-top: 10px;   
+    display: block;
+}
+
+.sidebar>:nth-child(2){
+    margin-top: 10px;
+}
+
+.sidebar>a{
+    display: block;
+    color: white;
+    padding: 16px;
+    padding-left: 20px;
+    /* margin-left: 20px; */
+    text-decoration: none;
+}
+
+/* .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+} */
+
+.sidebar a:hover:not(.active) {
+    background-color: #B8BCC5;
+    color: white;
+}
+
+div.dashboard{
+    height: calc(100vh - 49px);
+    margin-bottom: 0px;
+    color: white;
+    width: 100%;
+    background-color: #0d0d21;
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+div.dashboard-content>h1.heading {
+    margin-left: 0px;
+}
+
+div.dashboard-content{
+    width: 50%;
+    margin-top: 20px;
+}
+
+
+/* File list */
+
+#file-list{
+    background-color: #2E2F43;
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y:scroll;
+    max-height: 500px;
+}
+
+div#file-list>span{
+    font-size: 2rem;
+    background-color: #B8BCC5;
+    display: block;
+}
+
+a#file-name{
+    color: white;
+}
+
+a#file-name:hover{
+    color: #B8BCC5;
+}
+
+div#description{
+    color: #5681A0;
+}
+
+i#custom-icons{
+    color: white;
+}
+
+i#custom-icons:hover{
+    color: #5681A0;
+}
+
+.ui.basic.button:hover, .ui.basic.buttons .button:hover {
+    background: #2E2F43!important;
+}
+
+.ui.basic.button:active, .ui.basic.buttons .button:active {
+    background: #2E2F43!important;
+}
+
+.ui.basic.button:focus, .ui.basic.buttons .button:focus {
+    background: #2E2F43!important;
+}
+
+/* Search Modal CSS */
+/* Modal buttons */
+
+button.btn-normal {
+    background-color:#2E2F43;
+    border-color:black;
+    /* border-color:; */
+    color: white;
+    border-radius: 50px;
+    box-shadow: 1px 1px 2px #B8BCC5;
+}
+
+button.btn-normal:hover{
+    color: white;
+    background-color: #0d0d21;
+    border-color: #0d0d21;
+    box-shadow: 1px 1px 2px 2px #2E2F43;
+}

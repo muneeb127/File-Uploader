@@ -21,7 +21,7 @@ export const uploadFile = (files) => async dispatch => {
         //         console.log(e);
         //     })
 
-        await axios.post(`${process.env.REACT_APP_BASEURL}/upload`, fileData);
+        const fileUploadResponse = await axios.post(`${process.env.REACT_APP_BASEURL}/upload`, fileData);
 
         // Fetching all files to update state if upload is successful
         const response = await axios.get(`${process.env.REACT_APP_BASEURL}/files`);
@@ -29,6 +29,8 @@ export const uploadFile = (files) => async dispatch => {
             type: GET_ALL_FILES,
             payload: response.data
         })
+
+        return fileUploadResponse;
     }
     catch(error){
         dispatch({

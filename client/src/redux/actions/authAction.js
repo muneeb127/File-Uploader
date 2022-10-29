@@ -8,7 +8,7 @@ import {GET_ERRORS, SET_CURRENT_USER} from './types';
 export const registerUser = (userData, navigate) => async dispatch => {
     try{
         const response = await axios.post(`${process.env.REACT_APP_BASEURL}/users`, userData);
-        navigate('/login')
+        navigate('/')
     }
     catch(error){
         dispatch({

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {loginUser} from '../../redux/actions/authAction';
+import {loginUser} from '../../../redux/actions/authAction';
 
 import classnames from 'classnames';
 

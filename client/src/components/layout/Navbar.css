@@ -1,0 +1,33 @@
+nav#navbar-custom{
+    padding-left: 20px;
+    padding-right: 20px;
+    /* background-color: #0d0d21; */
+    background-color: #2E2F43;
+    border-bottom: 1px solid black;
+}
+
+i#custom-icon{
+    color: #B8BCC5;
+}
+
+i#custom-icon-cogs{
+    color: #5681A0;
+}
+
+.navbar-dark {
+    /* --bs-navbar-color: rgba(255, 255, 255, 0.55); */
+    --bs-navbar-color: #B8BCC5;
+}
+
+/* i.icon.bell:before {
+    color: #B8BCC5;
+}
+
+i.icon.boxes:before {
+    color: #B8BCC5;
+
+}
+
+i.icon.book:before {
+    content: "\f02d";
+} */

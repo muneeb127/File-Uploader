@@ -53,7 +53,7 @@ router.delete('/deletefile', auth, async(req, res) => {
         // console.log(req.query.id);
         const file = await File.findOneAndDelete({_id: req.query.id});
         // const file = await File.findOneAndDelete({_id: req.query.id, owner: req.user._id});
-        console.log("File: ", file);
+        // console.log("File: ", file);
         if(!file){
             res.status(400).send();
         }

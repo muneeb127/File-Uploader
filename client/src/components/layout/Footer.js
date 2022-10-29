@@ -5,7 +5,7 @@ const FooterComponent = () => {
 
   const location = useLocation()
 
-  if(location.pathname === "/loginpage" || location.pathname === "/" || location.pathname === "/register") {
+  if(location.pathname === "/loginpage" || location.pathname === "/" || location.pathname === "/register" || location.pathname === "/dummydashboard") {
       return null
   }
 
