@@ -88,7 +88,7 @@ div.dashboard-content{
     padding: 20px;
     border-radius: 20px;
     overflow-y:scroll;
-    max-height: 435px;
+    max-height: 450px;
 }
 
 div#file-list>span{

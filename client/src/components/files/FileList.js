@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import fileDownload from 'js-file-download';
 //Actions
 import {getAllFiles, deleteFile} from '../../redux/actions/fileAction';
+import Alert from 'react-bootstrap/Alert';
 
 const FileList = (props) => {
 
@@ -15,13 +16,14 @@ const FileList = (props) => {
     useEffect(() => {
         props.getAllFiles();
         setFiles(props.files);
-        // console.log("Files: ", files);
+        setTimeout(()=>{
+            setIsLoading(false);
+        }, 2000)
     }, []);
 
     useEffect(()=>{
-        // console.log("Files: ", files);
+        console.log("Files: ", files);
         setFiles(props.files);
-        setIsLoading(false);
     }, [props.files]);
 
     // Parsing file Data into the required format
@@ -73,14 +75,14 @@ const FileList = (props) => {
             <div className="item" key = {file.id}>
                 <div className="right floated content">
                     <div className="ui small basic icon buttons">
-                        <button className="ui button" onClick={() => onDownloadClick(file)}><i className="large cloud download icon"></i></button>
-                        <button className="ui button" onClick={() => onDeleteClick(file)}><i className="large archive icon"></i></button>
+                        <button className="ui button" onClick={() => onDownloadClick(file)}><i id='custom-icons' className="large cloud download icon"></i></button>
+                        <button className="ui button" onClick={() => onDeleteClick(file)}><i id='custom-icons' className="large archive icon"></i></button>
                     </div>
                 </div>
                 <i className="big file alternate middle aligned icon"></i>
                 <div className="content">
-                    <a className="header">{file.name}</a>
-                    <div className="description">{file.uploadDate} | {file.uploadTime}</div>
+                    <a id='file-name'>{file.name}</a>
+                    <div id="description">{file.uploadDate} | {file.uploadTime}</div>
                 </div>
             </div>
         )
@@ -93,14 +95,19 @@ const FileList = (props) => {
                 isLoading ? 
                 <>
                     <div className="ui massive active centered inline loader"></div>
-                    <p style={{textAlign:'center'}}>Fetching your files</p>
                 </>
                 :
-                <div>
-                    <div className="ui middle aligned divided list">
-                        {renderFiles}
-                    </div>   
-                </div>
+                (
+                    files.length === 0 ?
+                    <Alert key='dark' variant='dark'>
+                        You have not uploaded any files yet. Please upload a file to view it!
+                    </Alert>:
+                    <div id='file-container'>
+                        <div className="ui middle aligned divided list" id="file-list">
+                            {renderFiles}
+                        </div>   
+                    </div>
+                )
             }
         </div>
     )

@@ -65,76 +65,13 @@ const LoginPage2 = (props) => {
                                     'is-invalid': errors.email
                                 })}
                             />
-                            {/* {errors.email && (
-                                <Form.Control.Feedback type = "invalid">
-                                    {errors.email}
-                                </Form.Control.Feedback>
-                            )} */}
                         </Form.Group>
-
-                        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control 
-                                type="password" 
-                                placeholder="Password" 
-                                onChange = {e => setPassword(e.target.value)} 
-                                value = {password}
-                                className = {classnames({
-                                    'is-invalid': errors.password
-                                })}
-                            />
-                            {errors.password && (
-                                <Form.Control.Feedback type = "invalid">
-                                    {errors.password}
-                                </Form.Control.Feedback>
-                            )}
-                            
-                        </Form.Group>
-                        {errors.value && (
-                            <p style={{color: 'red'}}>
-                                {errors.value}
-                            </p>
-                        )} */}
                         <div className="btn-classic">
                             <Button variant="primary" size='md' className='btn-normal'>
                                 Log In
                             </Button>
                         </div>
                     </Form>
-                    {/* <Box
-                        component="form"
-                        lg={{
-                            width: '100%',
-                        }} 
-                        noValidate
-                        autoComplete="off"
-                        
-                    >
-                        <div id='text-fields'>
-                            <TextField fullWidth
-                                name="email"
-                                id="filled-required"
-                                label="EMAIL"
-                                variant="filled"
-                                error
-                                helperText="Your email is incorrect"
-                            />
-                            <TextField fullWidth
-                                id="filled-password-input"
-                                name="password"
-                                label="PASSWORD"
-                                type="password"
-                                variant="filled"
-                                error
-                                helperText="Your password is incorrect"
-                            />
-                        </div>
-                    </Box> */}
-                    {/* <div className='btn-classic'>
-                        <Button variant="primary" size='md' className='btn-normal'>
-                            Log In
-                        </Button>
-                    </div> */}
                 </div>
                 <div className='sign-up'>
                     <span>Don't have an account? </span>

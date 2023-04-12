@@ -29,14 +29,14 @@ const NavbarComponent = (props) => {
             <Nav.Link href="#"><i id='custom-icon-cogs' className="cogs icon"></i></Nav.Link>
             <Nav.Link href="#"><i id='custom-icon' className="search icon"></i></Nav.Link>
             <Nav.Link href="#"><i id='custom-icon' className="bell outline icon"></i></Nav.Link>
-            <Nav.Link href="/login" onClick = {onLogoutClick}>Logout</Nav.Link>
+            <Nav.Link href="/" onClick = {onLogoutClick}>Logout</Nav.Link>
         </Nav>
     )
 
     const guestLink = (
         <Nav>
             <Nav.Link href="/register">Signup</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/">Login</Nav.Link>
         </Nav>
     )
 

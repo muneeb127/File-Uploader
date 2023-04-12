@@ -41,7 +41,7 @@ function App() {
                   <Route exact path="/dashboard" element={<Dashboard/>}/>
                   <Route exact path="/dummydashboard" element={<DummyDashboard/>}/>
               </Routes>
-              <FooterComponent />
+              {/* <FooterComponent /> */}
           </div>
       </Router>
     </Provider>
